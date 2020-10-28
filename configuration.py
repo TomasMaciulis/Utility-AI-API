@@ -1,4 +1,4 @@
-from action import Action
+from bucket import Bucket
 from utility import Utility
 import json
 
@@ -13,10 +13,10 @@ class Configuration:
             utilities.append(Utility(name, description))
         self.utilities = utilities
 
-        actions = []
-        for name, description in self.__configuration['actions'].items():
-            actions.append(Action(name, description))
-        self.actions = actions
+        buckets = []
+        for name, description in self.__configuration['buckets'].items():
+            buckets.append(Bucket(name, description))
+        self.buckets = buckets
 
     @property
     def configuration(self) -> dict:
@@ -35,9 +35,9 @@ class Configuration:
         self.__utilities = utilities
 
     @property
-    def actions(self) -> list[Action]:
-        return self.__actions
+    def buckets(self) -> list[Bucket]:
+        return self.__buckets
 
-    @actions.setter
-    def actions(self, actions: list[Action]):
-        self.__actions = actions
+    @buckets.setter
+    def buckets(self, buckets: list[Bucket]):
+        self.__buckets = buckets

@@ -15,6 +15,10 @@ print('\n==Utilities==')
 for utility in configuration.utilities:
     print(utility.name, '->', utility.weight_value)
 
-print('\n==Actions==')
-for action in configuration.actions:
-    print(action.name, '->', action.weight_value, action.utility_score)
+print('\n==Buckets==')
+for bucket in configuration.buckets:
+    print(bucket.name, '->', bucket.weight_value)
+    print("==Actions==")
+    for action in bucket.actions:
+        print(action.name, '->', action.weight_value)
+    print("===========")
