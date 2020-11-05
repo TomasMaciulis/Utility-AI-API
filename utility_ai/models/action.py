@@ -1,4 +1,4 @@
-from configuration_entry import ConfigurationEntry
+from .configuration_entry import ConfigurationEntry
 
 
 class Action(ConfigurationEntry):
@@ -28,3 +28,5 @@ class Action(ConfigurationEntry):
             self.__utility_score = eval(self.__utility_score_formula)
         else:
             self.__utility_score = utility_score
+
+        self.utility_score_int = int(self.__utility_score*10000)

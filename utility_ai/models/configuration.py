@@ -1,5 +1,5 @@
-from bucket import Bucket
-from utility import Utility
+from .bucket import Bucket
+from .utility import Utility
 import json
 
 

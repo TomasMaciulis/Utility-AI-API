@@ -1,5 +1,5 @@
-from configuration_entry import ConfigurationEntry
-from action import Action
+from .configuration_entry import ConfigurationEntry
+from .action import Action
 
 
 class Bucket(Action):

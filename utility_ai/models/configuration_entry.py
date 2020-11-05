@@ -1,4 +1,4 @@
-import instance_globals
+from utility_ai import instance_globals
 
 
 class ConfigurationEntry:
