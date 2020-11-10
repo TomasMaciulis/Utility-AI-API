@@ -1,12 +1,13 @@
 import random
-from .models.action import Action
+from .models.configuration_entry import ConfigurationEntry
+from .traits.utility_score_trait import UtilityScoreTrait
 
 
 class ActionPicker:
-    def __init__(self, items: list[Action]):
+    def __init__(self, items: list[UtilityScoreTrait, ConfigurationEntry]):
         self.items = items
 
-    def pick_weighted_random(self) -> Action:
+    def pick_weighted_random(self):
         weight_sum = 0
 
         for item in self.__items:
@@ -24,5 +25,5 @@ class ActionPicker:
         return self.__items
 
     @items.setter
-    def items(self, items: list[Action]):
+    def items(self, items: list[UtilityScoreTrait, ConfigurationEntry]):
         self.__items = items

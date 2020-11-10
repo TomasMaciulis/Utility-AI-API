@@ -13,10 +13,11 @@ def action():
     with open('test_data/test_config.json') as configuration_json:
         configuration = Configuration(configuration_json.read())
 
-    for bucket in configuration.buckets:
-        print(bucket.name, ": ", bucket.utility_score, " -> ", bucket.utility_score_int)
+    picked_bucket = ActionPicker(configuration.buckets).pick_weighted_random()
+    picked_action = ActionPicker(picked_bucket.actions).pick_weighted_random()
 
-    return {"bucket": ActionPicker(configuration.buckets).pick_weighted_random().name}
+    return {"bucket": picked_bucket.name,
+            "action": picked_action.name}
 
 
 if __name__ == "__main__":

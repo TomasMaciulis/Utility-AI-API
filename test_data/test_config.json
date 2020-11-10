@@ -22,12 +22,12 @@
 			"weight_formula": "(health+nursery)/2",
 			"utility_score_formula": "(x/2)**2",
 			"actions": {
-				"expand": {
+				"test action 1": {
 					"parameters": ["crowdedness", "health"],
 					"weight_formula": "(crowdedness+health)/2",
 					"utility_score_formula": "( x / 2 ) ** 2"
 				},
-				"breed": {
+				"test action 2": {
 					"parameters": ["health", "nursery"],
 					"weight_formula": "(health+nursery)/2",
 					"utility_score_formula": "(x/2)**2"
