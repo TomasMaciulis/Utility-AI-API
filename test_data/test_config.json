@@ -16,23 +16,6 @@
 					"utility_score_formula": "(x/2)**2"
 				}
 			}
-		},
-		"test": {
-			"parameters": ["health", "nursery"],
-			"weight_formula": "(health+nursery)/2",
-			"utility_score_formula": "(x/2)**2",
-			"actions": {
-				"test action 1": {
-					"parameters": ["crowdedness", "health"],
-					"weight_formula": "(crowdedness+health)/2",
-					"utility_score_formula": "( x / 2 ) ** 2"
-				},
-				"test action 2": {
-					"parameters": ["health", "nursery"],
-					"weight_formula": "(health+nursery)/2",
-					"utility_score_formula": "(x/2)**2"
-				}
-			}
 		}
 	},
 	"utilities": {

@@ -6,4 +6,9 @@ class Action(ConfigurationEntry, UtilityScoreTrait):
 
     def __init__(self, name: str, description: dict):
         ConfigurationEntry.__init__(self, name, description)
-        UtilityScoreTrait.__init__(self, description['utility_score_formula'], super().weight_value)
+        UtilityScoreTrait.__init__(
+            self,
+            description['utility_score_formula'],
+            super().weight_value,
+            name
+        )
