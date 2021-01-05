@@ -1,0 +1,83 @@
+{
+	"buckets": {
+		"social_needs": {
+			"parameters": ["sociability", "energy"],
+			"weight_formula": "(sociability + energy) / 2",
+			"utility_score_formula": "x**2",
+			"actions": {
+				"talk": {
+					"parameters": ["energy", "sociability", "happiness"],
+					"weight_formula": "(energy+sociability+happiness)/3",
+					"utility_score_formula": "x**2"
+				},
+				"gossip": {
+					"parameters": ["energy", "sociability", "happiness"],
+					"weight_formula": "energy+sociability+(1-happiness)/3",
+					"utility_score_formula": "(x/3)**2"
+				},
+				"play": {
+					"parameters": ["energy", "sociability"],
+					"weight_formula": "(energy+sociability)/2",
+					"utility_score_formula": "2*x ** 1/2"
+				}
+			}
+		},
+		"basic_needs": {
+			"parameters": ["hunger", "energy"],
+			"weight_formula": "(hunger/100*2 + (1-energy)/2) / 2",
+			"utility_score_formula": "x**2",
+			"actions": {
+				"snooze_on_bench": {
+					"parameters": ["energy"],
+					"weight_formula": "(1-energy)/4",
+					"utility_score_formula": "2*x**2"
+				},
+				"go_eat_to_canteen": {
+					"parameters": ["hunger", "happiness", "sociability"],
+					"weight_formula": "(hunger/100+happiness+sociability)/2",
+					"utility_score_formula": "x**2"
+				},
+				"go_get_food_from_shop": {
+					"parameters": ["hunger", "happiness", "sociability"],
+					"weight_formula": "(hunger/100 + happiness + 1-sociability)/3",
+					"utility_score_formula": "x**2"
+				}
+			}
+		},
+		"duties": {
+			"parameters": ["humility", "responsibility"],
+			"weight_formula": "(humility/100 + responsibility/100)/2",
+			"utility_score_formula": "x**3",
+			"actions": {
+				"go_to_class": {
+					"parameters": ["class_progress", "responsibility"],
+					"weight_formula": "(class_progress/100 + responsibility/100)/2",
+					"utility_score_formula": "x*2"
+				},
+				"study_for_class": {
+					"parameters": ["responsibility", "humility"],
+					"weight_formula": "(responsibility/100 + humility/100)/2",
+					"utility_score_formula": "x**2"
+				}
+			}
+		}
+	},
+	"utilities": {
+		"happiness": {
+			"parameters": ["mood"],
+			"weight_formula": "mood/100"
+		},
+		"energy": {
+			"parameters": ["hunger", "happiness"],
+			"weight_formula": "((1-(hunger/100)) + happiness)/2"
+		},
+		"socializing_crave": {
+			"parameters": ["energy", "loneliness"],
+			"weight_formula": "(energy + loneliness/100)/2"
+		},
+		"sociability": {
+			"parameters": ["extroversion", "socializing_crave", "energy"],
+			"weight_formula": "(extroversion/100 + socializing_crave + energy)/3"
+		}
+	}
+}

@@ -31,12 +31,17 @@ class UtilityScoreTrait:
             x = self.weight_value
             self.__utility_score = eval(self.__utility_score_formula)
             if (
-                    self.name == instance_globals.parameters['currentAction']
-                    or
-                    self.name == instance_globals.parameters['currentBucket']
+                    'currentAction' in instance_globals.parameters
+                    and
+                    'currentBucket' in instance_globals.parameters
             ):
-                self.__utility_score = self.__utility_score + self.__utility_score / 100 * 80
-        else:
-            self.__utility_score = utility_score
+                if (
+                        self.name == instance_globals.parameters['currentAction']
+                        or
+                        self.name == instance_globals.parameters['currentBucket']
+                ):
+                    self.__utility_score = self.__utility_score + self.__utility_score / 100 * 80
+                else:
+                    self.__utility_score = utility_score
 
         self.utility_score_int = int(self.__utility_score * 10000)

@@ -15,7 +15,7 @@ def action():
 
     if not user:
         return {
-            "status": "unauthorized action"
+            "status": "user not found"
         }, 401
     user_config_uri = user[0]
 
@@ -23,6 +23,14 @@ def action():
 
     with open(user_config_uri) as configuration_json:
         configuration = Configuration(configuration_json.read())
+
+    print(instance_globals.parameters)
+    for bucket in configuration.buckets:
+        print(bucket.name, bucket.utility_score)
+        print("*******************")
+        for action in bucket.actions:
+            print(action.name, action.utility_score)
+        print("\n")
 
     picked_bucket = ActionPicker(configuration.buckets).pick_weighted_random()
     picked_action = ActionPicker(picked_bucket.actions).pick_weighted_random()
@@ -35,8 +43,18 @@ def action():
 
 @app.route('/config', methods=['GET'])
 def config():
-    with open('test_data/test_config.json') as configuration_json:
+    parameters = request.get_json()
+    user = DatabaseOperations.get_user_config(parameters['key'])
+
+    if not user:
+        return {
+                   "status": "user not found"
+               }, 401
+    user_config_uri = user[0]
+
+    with open(user_config_uri) as configuration_json:
         return json.loads(configuration_json.read())
+
 
 @app.route('/create-user', methods=['POST'])
 def create_user():
