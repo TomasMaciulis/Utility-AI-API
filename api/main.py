@@ -24,14 +24,6 @@ def action():
     with open(user_config_uri) as configuration_json:
         configuration = Configuration(configuration_json.read())
 
-    print(instance_globals.parameters)
-    for bucket in configuration.buckets:
-        print(bucket.name, bucket.utility_score)
-        print("*******************")
-        for action in bucket.actions:
-            print(action.name, action.utility_score)
-        print("\n")
-
     picked_bucket = ActionPicker(configuration.buckets).pick_weighted_random()
     picked_action = ActionPicker(picked_bucket.actions).pick_weighted_random()
 
